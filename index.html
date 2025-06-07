@@ -3,1347 +3,573 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>철도신호제어시설 작업일지</title>
-    
-    <!-- PWA 메타 태그 -->
-    <meta name="description" content="철도신호제어시설 작업일지 작성 및 관리 앱">
-    <meta name="theme-color" content="#2563eb">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="작업일지">
-    <meta name="msapplication-TileColor" content="#2563eb">
-    <meta name="msapplication-tap-highlight" content="no">
-    
-    <!-- 매니페스트 연결 -->
-    <link rel="manifest" href="./manifest.json">
-    
-    <!-- 아이콘 -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IiMyNTYzZWIiIHJ4PSI0Ii8+PHBhdGggZD0iTTcgNGgxdjE2SDRWNGgzek0xMyA0djE2SDEwVjRoM3pNMTkgNHYxNkgxNlY0aDN6IiBmaWxsPSJ3aGl0ZSIvPjxwYXRoIGQ9Ik02IDEwSDE4IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNNiAxNEgxOCIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+">
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0iIzI1NjNlYiIgcng9IjQiLz48cGF0aCBkPSJNNyA0aDF2MTZINFY0aDN6TTEzIDR2MTZIMTBWNGgzek0xOSA0djE2SDE2VjRoM3oiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTYgMTBIMTgiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik02IDE0SDE4IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiLz48L3N2Zz4=">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <title>정밀진단작업일지</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#1a73e8">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
-        
         body {
-            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f0f2f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
         .header-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.1)' stroke-width='2'%3E%3Cpath d='M100 300h50v-50h50v50h50v-50h50v50h50v-50h50v50h50v-50h50v50h50v-50h50v50h50v-50h50v50h50v-50h50v50h50'/%3E%3Ccircle cx='200' cy='200' r='20'/%3E%3Ccircle cx='400' cy='200' r='20'/%3E%3Ccircle cx='600' cy='200' r='20'/%3E%3Ccircle cx='800' cy='200' r='20'/%3E%3Ccircle cx='1000' cy='200' r='20'/%3E%3Cpath d='M150 150v100M250 150v100M350 150v100M450 150v100M550 150v100M650 150v100M750 150v100M850 150v100M950 150v100M1050 150v100'/%3E%3Cpath d='M100 400h1000M100 420h1000'/%3E%3C/g%3E%3C/svg%3E");
+            background: linear-gradient(to right, #1a73e8, #3f8ce3);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 100,0 100,70" fill="%232196f3" /></svg>'); /* 철도 신호 SVG 배경 예시 */
             background-size: cover;
-            background-position: center;
-            opacity: 0.3;
+            background-repeat: no-repeat;
+            background-position: center bottom;
         }
-        
         .card {
-            background: white;
-            border-radius: 12px;
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* 12px */
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease;
         }
-        
-        .card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        /* Adjusted heights for more rows */
+        textarea.grid-line-1 {
+            background-image: linear-gradient(to bottom, transparent 98%, #ccc 98%);
+            background-size: 100% 24px; /* Adjust line height as needed */
+            line-height: 24px; /* Should match background-size height */
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 120px; /* 5 lines * 24px */
         }
-        
-        .grid-input {
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            padding: 8px 12px;
-            font-size: 14px;
-            transition: all 0.2s;
-            background: #f9fafb;
+        textarea.grid-line-3 {
+            background-image: linear-gradient(to bottom, transparent 98%, #ccc 98%);
+            background-size: 100% 24px; /* Adjust line height as needed */
+            line-height: 24px; /* Should match background-size height */
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 144px; /* 6 lines * 24px */
         }
-        
-        .grid-input:focus {
-            outline: none;
-            border-color: #3b82f6;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-        
-        .grid-container {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .grid-table {
-            min-width: 800px;
-        }
-        
-        .tooltip {
-            position: relative;
-        }
-        
-        .tooltip:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1f2937;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            white-space: nowrap;
-            z-index: 1000;
-            margin-bottom: 5px;
-        }
-        
-        .tooltip:hover::before {
-            content: '';
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 5px solid transparent;
-            border-top-color: #1f2937;
-            margin-bottom: -5px;
-        }
-        
-        .lined-textarea {
-            background-attachment: local;
-            font-family: 'Noto Sans KR', sans-serif;
-            font-size: 14px;
-            padding: 8px;
-        }
-        
-        /* 작업내용: 1줄 격자 */
-        #workContent {
-            background-image: repeating-linear-gradient(
-                transparent,
-                transparent 39px,
-                #d1d5db 39px,
-                #d1d5db 40px
-            );
-            line-height: 40px;
-            height: 50px !important;
-            min-height: 50px !important;
-            max-height: 50px !important;
-            overflow: hidden !important;
-            resize: none !important;
-        }
-        
-        #workContent:focus {
-            background-image: repeating-linear-gradient(
-                transparent,
-                transparent 39px,
-                #9ca3af 39px,
-                #9ca3af 40px
-            );
-        }
-        
-        /* 특이사항: 3줄 격자 */
-        #specialNotes {
-            background-image: repeating-linear-gradient(
-                transparent,
-                transparent 39px,
-                #d1d5db 39px,
-                #d1d5db 40px
-            );
-            line-height: 40px;
-            height: 130px !important;
-            min-height: 130px !important;
-            max-height: 130px !important;
-            overflow: hidden !important;
-            resize: none !important;
-        }
-        
-        #specialNotes:focus {
-            background-image: repeating-linear-gradient(
-                transparent,
-                transparent 39px,
-                #9ca3af 39px,
-                #9ca3af 40px
-            );
-        }
-        
-        @media print {
-            @page {
-                size: A4 landscape;
-                margin: 0;
-            }
-            
-            .no-print { display: none !important; }
-            
-            /* 모든 기본 요소 숨기기 */
-            body > *:not(#pdf-duplicate) {
-                display: none !important;
-            }
-            
-            /* placeholder 텍스트 숨기기 */
-            input::placeholder,
-            textarea::placeholder {
-                color: transparent !important;
-            }
-            
-            html, body { 
-                width: 297mm !important;
-                height: 210mm !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                overflow: hidden !important;
-                font-size: 8px !important;
-                background: white !important;
-            }
-            
-            /* PDF 컨테이너 - CSS Grid로 정확한 분할 */
-            .pdf-only {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr !important;
-                width: 297mm !important;
-                height: 210mm !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                gap: 0 !important;
-                background: white !important;
-                overflow: hidden !important;
-            }
-            
-            /* Grid 아이템으로 정확한 50:50 */
-            #pdf-duplicate > main {
-                width: 100% !important;
-                height: 210mm !important;
-                margin: 0 !important;
-                padding: 3mm !important;
-                border: 1px solid #000 !important;
-                background: white !important;
-                box-sizing: border-box !important;
-                overflow: hidden !important;
-                display: block !important;
-                grid-column: span 1 !important;
-            }
-            
-            #pdf-duplicate > main:first-child {
-                border-right: 0.5px solid #000 !important;
-            }
-            
-            #pdf-duplicate > main:last-child {
-                border-left: 0.5px solid #000 !important;
-            }
-            
-            .container {
-                max-width: none !important;
-                margin: 0 !important;
-                padding: 1px !important;
-                height: 100% !important;
-                width: 100% !important;
-                box-sizing: border-box !important;
-            }
-            
-            .card { 
-                box-shadow: none !important; 
-                border: none !important;
-                border-radius: 0 !important;
-                padding: 2px 0 !important;
-                margin-bottom: 3px !important;
-                break-inside: avoid !important;
-                page-break-inside: avoid !important;
-                background: transparent !important;
-            }
-            
-            .card h2 {
-                font-size: 10px !important;
-                margin-bottom: 4px !important;
-                padding-bottom: 2px !important;
-                border-bottom: 1px solid #333 !important;
-                font-weight: bold !important;
-                color: #000 !important;
-            }
-            
-            /* 입력 필드 스타일 - PDF 전용 - 모든 입력 필드의 테두리 제거 */
-            .pdf-only input, 
-            .pdf-only textarea {
-                font-size: 8px !important;
-                padding: 2px 3px !important;
-                border: none !important;
-                border-radius: 0 !important;
-                background: transparent !important;
-                line-height: 1.3 !important;
-                width: 100% !important;
-                box-sizing: border-box !important;
-                outline: none !important;
-                height: 20px !important;
-                box-shadow: none !important;
-            }
-            
-            textarea {
-                min-height: auto !important;
-                height: auto !important;
-                border: none !important;
-                background: transparent !important;
-                resize: none !important;
-            }
-            
 
-            
-            label {
-                font-size: 9px !important;
-                font-weight: 600 !important;
-                margin-bottom: 2px !important;
-                display: block !important;
-                color: #333 !important;
-            }
-            
-            /* 그리드 레이아웃 조정 */
-            .grid {
-                gap: 3px !important;
-                display: grid !important;
-                width: 100% !important;
-            }
-            
-            .grid-cols-1 {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .grid-cols-2 {
-                grid-template-columns: 1fr 1fr !important;
-            }
-            
-            .grid-cols-3 {
-                grid-template-columns: 1fr 1fr 1fr !important;
-            }
-            
-            /* 각 div 크기 통일 */
-            .grid > div {
-                width: 100% !important;
-                box-sizing: border-box !important;
-            }
-            
-            /* PDF에서 격자선 표시 */
-            .lined-textarea {
-                background-attachment: local !important;
-                padding: 4px !important;
-            }
-            
-            /* 작업내용 복사본: 1줄 격자 */
-            .pdf-only #workContent_copy {
-                height: 50px !important;
-                border: none !important;
-                line-height: 48px !important;
-                padding: 2px 4px !important;
-                background: transparent !important;
-                background-image: linear-gradient(to bottom, transparent 48px, #333 48px, #333 49px, transparent 49px) !important;
-                font-size: 8px !important;
-                box-shadow: none !important;
-                outline: none !important;
-                overflow: hidden !important;
-                resize: none !important;
-                white-space: nowrap !important;
-            }
-            
-            /* 특이사항 복사본: 3줄 격자 */
-            .pdf-only #specialNotes_copy {
-                height: 130px !important;
-                border: none !important;
-                line-height: 40px !important;
-                padding: 2px 4px !important;
-                background: transparent !important;
-                background-image: 
-                    linear-gradient(to bottom, transparent 40px, #333 40px, #333 41px, transparent 41px),
-                    linear-gradient(to bottom, transparent 80px, #333 80px, #333 81px, transparent 81px),
-                    linear-gradient(to bottom, transparent 120px, #333 120px, #333 121px, transparent 121px) !important;
-                font-size: 8px !important;
-                box-shadow: none !important;
-                outline: none !important;
-            }
-            
-            /* 툴팁 제거 */
-            .tooltip:hover::after,
-            .tooltip:hover::before {
-                display: none !important;
-            }
-            
-            /* 안내 메시지 숨기기 */
-            .text-gray-600 {
-                display: none !important;
-            }
-            
-            /* 모바일 PDF 출력 최적화 */
-            @media print and (max-width: 768px) {
-                html, body {
-                    width: 100vw !important;
-                    height: 100vh !important;
-                    font-size: 6px !important;
-                    transform: scale(0.7) !important;
-                    transform-origin: top left !important;
-                }
-                
-                .pdf-only {
-                    width: 100vw !important;
-                    height: 100vh !important;
-                    grid-template-columns: 50% 50% !important;
-                    transform: scale(1) !important;
-                }
-                
-                #pdf-duplicate > main {
-                    height: 100vh !important;
-                    padding: 2mm !important;
-                    font-size: 6px !important;
-                }
-                
-                .container {
-                    padding: 1px !important;
-                    margin: 0 !important;
-                }
-                
-                .card {
-                    margin-bottom: 1px !important;
-                    padding: 1px 0 !important;
-                }
-                
-                .card h2 {
-                    font-size: 6px !important;
-                    margin-bottom: 1px !important;
-                    padding-bottom: 1px !important;
-                }
-                
-                label {
-                    font-size: 5px !important;
-                    margin-bottom: 0px !important;
-                }
-                
-                .pdf-only input, 
-                .pdf-only textarea {
-                    font-size: 4px !important;
-                    padding: 1px !important;
-                    height: 10px !important;
-                    line-height: 1 !important;
-                }
-                
-                .pdf-only #workContent_copy {
-                    height: 25px !important;
-                    line-height: 23px !important;
-                    background-image: linear-gradient(to bottom, transparent 23px, #333 23px, #333 24px, transparent 24px) !important;
-                }
-                
-                .pdf-only #specialNotes_copy {
-                    height: 65px !important;
-                    line-height: 20px !important;
-                    background-image: 
-                        linear-gradient(to bottom, transparent 20px, #333 20px, #333 21px, transparent 21px),
-                        linear-gradient(to bottom, transparent 40px, #333 40px, #333 41px, transparent 41px),
-                        linear-gradient(to bottom, transparent 60px, #333 60px, #333 61px, transparent 61px) !important;
-                }
-                
-                .grid {
-                    gap: 1px !important;
-                }
-            }
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
         }
-        
-        @media (max-width: 640px) {
-            .mobile-stack { flex-direction: column; }
-            .mobile-full { width: 100%; margin-bottom: 12px; }
-            .mobile-scroll { overflow-x: auto; }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            width: 90%;
+            max-width: 500px;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Print Styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .print-area, .print-area * {
+                visibility: visible;
+            }
+            .print-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                display: flex;
+                flex-wrap: nowrap; /* Prevent wrapping for 2-up layout */
+                justify-content: space-around;
+                padding: 10mm; /* A4 margins */
+            }
+            .print-page {
+                width: 48%; /* Roughly 50% for 2-up, adjust for margins */
+                border: 1px solid black; /* Outer border */
+                box-sizing: border-box;
+                padding: 5mm;
+            }
+            .print-page input,
+            .print-page textarea {
+                border: none !important; /* Remove internal input borders */
+                outline: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100%;
+                font-size: 0.9em; /* Adjust font size for print */
+                background-color: transparent !important;
+            }
+            .print-page label {
+                font-weight: bold;
+                margin-right: 5px;
+                font-size: 0.9em;
+            }
+            .print-page .flex {
+                display: flex;
+                align-items: baseline;
+                margin-bottom: 5px;
+            }
+            .print-page .field-container {
+                margin-bottom: 8px;
+            }
+            /* Adjusted print heights */
+            .print-page .grid-line-1 {
+                background-image: linear-gradient(to bottom, transparent 98%, #ccc 98%) !important;
+                background-size: 100% 24px !important;
+                line-height: 24px !important;
+                height: 120px !important; /* Matches new min-height */
+            }
+            .print-page .grid-line-3 {
+                background-image: linear-gradient(to bottom, transparent 98%, #ccc 98%) !important;
+                background-size: 100% 24px !important;
+                line-height: 24px !important;
+                height: 144px !important; /* Matches new min-height */
+            }
+            .print-page .placeholder-hidden::placeholder {
+                color: transparent;
+            }
+            .print-page .hide-on-print {
+                display: none !important;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
-    <!-- 헤더 -->
-    <header class="header-bg text-white shadow-lg relative">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
-                <div class="relative z-10">
-                    <h1 class="text-2xl md:text-3xl font-bold mb-2">철도신호제어시설 작업일지</h1>
-                    <p class="text-blue-100 text-sm">Railway Signal Control Facility Work Log</p>
-                </div>
-                <div class="flex gap-2 mt-4 md:mt-0 relative z-10 no-print">
-                    <button onclick="autoSave()" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium transition-all">
-                        💾 자동저장
-                    </button>
-                    <button onclick="exportPDF()" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium transition-all">
-                        📄 PDF출력
-                    </button>
-                    <button id="install-app" onclick="showInstallPrompt()" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium transition-all" style="display: none;">
-                        📲 앱설치
-                    </button>
-                </div>
-            </div>
-        </div>
+<body class="min-h-screen flex flex-col">
+    <header class="header-bg text-white p-4 shadow-md text-center">
+        <h1 class="text-2xl font-bold">정밀진단작업일지</h1>
+        <p class="text-sm">철도신호제어시설 작업일지</p>
     </header>
 
-    <main class="container mx-auto px-4 py-6 max-w-6xl">
-        <!-- 기본 정보 -->
-        <section class="card p-6 mb-6">
-            <h2 class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-blue-100 pb-2">📅 기본 정보</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                    <label for="workDate" class="block text-sm font-medium text-gray-700 mb-2">작업 날짜 *</label>
-                    <input type="date" id="workDate" tabindex="1" 
-                           class="tooltip w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           data-tooltip="작업을 수행한 날짜를 선택해주세요">
-                </div>
-                <div>
-                    <label for="temperature" class="block text-sm font-medium text-gray-700 mb-2">현장 온도</label>
-                    <input type="text" id="temperature" tabindex="2" placeholder="22.5℃"
-                           class="tooltip w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           data-tooltip="현장의 온도를 기록해주세요 (예: 22.5℃)">
-                </div>
-                <div>
-                    <label for="humidity" class="block text-sm font-medium text-gray-700 mb-2">현장 습도</label>
-                    <input type="text" id="humidity" tabindex="3" placeholder="55%"
-                           class="tooltip w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           data-tooltip="현장의 습도를 기록해주세요 (예: 55%)">
-                </div>
-            </div>
-        </section>
+    <main class="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
+        <section id="workLogForm" class="card p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-blue-700">작업 정보 입력</h2>
 
-        <!-- 작업 대상 및 인원 -->
-        <section class="card p-6 mb-6">
-            <h2 class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-blue-100 pb-2">👥 작업 대상 및 인원</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label for="workTarget" class="block text-sm font-medium text-gray-700 mb-2">작업 대상 시설 *</label>
-                    <input type="text" id="workTarget" tabindex="4" placeholder="신호기 상1번, 궤도회로 1DT, 전철소 배전반 등"
-                           class="tooltip w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           data-tooltip="작업을 수행할 신호제어시설을 구체적으로 기록해주세요">
+                <div class="mb-4">
+                    <label for="dateTime" class="block text-gray-700 text-sm font-bold mb-2">날짜/시간:</label>
+                    <input type="datetime-local" id="dateTime" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
-                <div>
-                    <label for="workTeam" class="block text-sm font-medium text-gray-700 mb-2">작업자 및 인원 *</label>
-                    <input type="text" id="workTeam" tabindex="5" placeholder="김철수 외 4명 (총 5명), 박영희 팀장 외 2명 등"
-                           class="tooltip w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           data-tooltip="작업에 참여한 인원과 총 인원수를 기록해주세요">
+                <div class="mb-4">
+                    <label for="temperature" class="block text-gray-700 text-sm font-bold mb-2">온도 (℃):</label>
+                    <input type="number" step="0.1" id="temperature" placeholder="예: 22.5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 </div>
+                <div class="mb-4">
+                    <label for="humidity" class="block text-gray-700 text-sm font-bold mb-2">습도 (%):</label>
+                    <input type="number" step="1" id="humidity" placeholder="예: 55" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label for="workTarget" class="block text-gray-700 text-sm font-bold mb-2">작업대상:</label>
+                    <input type="text" id="workTarget" placeholder="예: 신호기 상1" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4 col-span-1 md:col-span-2">
+                    <label for="workers" class="block text-gray-700 text-sm font-bold mb-2">작업자 및 인원:</label>
+                    <input type="text" id="workers" placeholder="예: 김철수/5명" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4 col-span-1 md:col-span-2">
+                    <label for="workContent" class="block text-gray-700 text-sm font-bold mb-2">작업내용:</label>
+                    <textarea id="workContent" placeholder="작업 내용을 입력하세요." rows="5" class="grid-line-1 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="testerUsed" class="block text-gray-700 text-sm font-bold mb-2">사용 측정테스터기:</label>
+                    <input type="text" id="testerUsed" placeholder="예: FLUKE 15B+ 테스터기" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4">
+                    <label for="measurementMethod" class="block text-gray-700 text-sm font-bold mb-2">측정방법:</label>
+                    <input type="text" id="measurementMethod" placeholder="예: 절연저항 1,000V 기준 측정" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+                <div class="mb-4 col-span-1 md:col-span-2">
+                    <label for="notes" class="block text-gray-700 text-sm font-bold mb-2">특이사항:</label>
+                    <textarea id="notes" placeholder="특이사항을 입력하세요." rows="6" class="grid-line-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3 justify-center mt-6">
+                <button id="saveManualBtn" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200">
+                    수동 저장
+                </button>
+                <button id="loadBtn" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200">
+                    데이터 불러오기
+                </button>
+                <button id="printPdfBtn" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200">
+                    PDF 출력 (A4 2-up)
+                </button>
             </div>
         </section>
 
-        <!-- 작업 내용 -->
-        <section class="card p-6 mb-6">
-            <h2 class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-blue-100 pb-2">🔧 작업 내용</h2>
-            <div>
-                <textarea id="workContent" tabindex="6" rows="1" 
-                          placeholder="신호기 점검 및 청소"
-                          class="tooltip lined-textarea w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
-                          data-tooltip="수행한 작업 내용을 기록해주세요">
-                </textarea>
+        <div id="printPreviewArea" class="print-area hidden">
+            <div class="print-page">
+                <h3 class="text-center font-bold text-lg mb-3 hide-on-print">정밀진단작업일지</h3>
+                <div class="field-container flex">
+                    <label>날짜/시간:</label>
+                    <span id="printDateTimeLeft"></span>
+                </div>
+                <div class="field-container flex">
+                    <label>온도:</label>
+                    <span id="printTemperatureLeft"></span>
+                </div>
+                <div class="field-container flex">
+                    <label>습도:</label>
+                    <span id="printHumidityLeft"></span>
+                </div>
+                <div class="field-container flex">
+                    <label>작업대상:</label>
+                    <span id="printWorkTargetLeft"></span>
+                </div>
+                <div class="field-container flex">
+                    <label>작업자 및 인원:</label>
+                    <span id="printWorkersLeft"></span>
+                </div>
+                <div class="field-container">
+                    <label class="block">작업내용:</label>
+                    <div id="printWorkContentLeft" class="grid-line-1 w-full"></div>
+                </div>
+                <div class="field-container flex">
+                    <label>사용 측정테스터기:</label>
+                    <span id="printTesterUsedLeft"></span>
+                </div>
+                <div class="field-container flex">
+                    <label>측정방법:</label>
+                    <span id="printMeasurementMethodLeft"></span>
+                </div>
+                <div class="field-container">
+                    <label class="block">특이사항:</label>
+                    <div id="printNotesLeft" class="grid-line-3 w-full"></div>
+                </div>
             </div>
-        </section>
 
-        <!-- 측정 장비 정보 -->
-        <section class="card p-6 mb-6">
-            <h2 class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-blue-100 pb-2">🔬 측정 장비 및 방법</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label for="testEquipment" class="block text-sm font-medium text-gray-700 mb-2">사용 측정테스터기</label>
-                    <input type="text" id="testEquipment" tabindex="7" placeholder="FLUKE 15B+ 멀티미터, MEGGER MIT515 절연저항계"
-                           class="tooltip w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           data-tooltip="사용한 측정장비의 제조사와 모델명을 기록해주세요">
+            <div class="print-page">
+                <h3 class="text-center font-bold text-lg mb-3 hide-on-print">정밀진단작업일지</h3>
+                <div class="field-container flex">
+                    <label>날짜/시간:</label>
+                    <span id="printDateTimeRight"></span>
                 </div>
-                <div>
-                    <label for="measureMethod" class="block text-sm font-medium text-gray-700 mb-2">측정 방법</label>
-                    <input type="text" id="measureMethod" tabindex="8" placeholder="절연저항 1,000V 기준 측정, DC 전압 측정"
-                           class="tooltip w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                           data-tooltip="측정에 사용한 방법과 기준을 기록해주세요">
+                <div class="field-container flex">
+                    <label>온도:</label>
+                    <span id="printTemperatureRight"></span>
                 </div>
-            </div>
-        </section>
-
-        <!-- 특이사항 -->
-        <section class="card p-6 mb-6">
-            <h2 class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-blue-100 pb-2">⚠️ 특이사항</h2>
-            <div>
-                <textarea id="specialNotes" tabindex="9" rows="3" 
-                          placeholder="우천으로 인한 작업 지연
-신호기 LED 점등 불량
-절연저항 기준치 미달"
-                          class="tooltip lined-textarea w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
-                          data-tooltip="작업 중 발생한 특이사항을 기록해주세요">
-                </textarea>
-            </div>
-            <div class="mt-4 text-sm text-gray-600">
-                💡 특이사항이 발생한 경우 구체적인 내용과 취한 조치사항을 상세히 기록해주세요.
-            </div>
-        </section>
-    </main>
-
-    <!-- PDF 전용 복제본 (숨겨짐) -->
-    <div id="pdf-duplicate" class="pdf-only" style="display: none;">
-        <main class="container mx-auto px-4 py-6 max-w-6xl">
-            <!-- 기본 정보 -->
-            <section class="card p-6 mb-6">
-                <h2 class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-blue-100 pb-2">📅 기본 정보</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">작업 날짜 *</label>
-                        <input type="text" id="workDate_copy" readonly class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">현장 온도</label>
-                        <input type="text" id="temperature_copy" readonly class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">현장 습도</label>
-                        <input type="text" id="humidity_copy" readonly class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                    </div>
+                <div class="field-container flex">
+                    <label>습도:</label>
+                    <span id="printHumidityRight"></span>
                 </div>
-            </section>
-
-            <!-- 작업 대상 및 인원 -->
-            <section class="card p-6 mb-6">
-                <h2 class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-blue-100 pb-2">👥 작업 대상 및 인원</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">작업 대상 시설 *</label>
-                        <input type="text" id="workTarget_copy" readonly class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">작업자 및 인원 *</label>
-                        <input type="text" id="workTeam_copy" readonly class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                    </div>
+                <div class="field-container flex">
+                    <label>작업대상:</label>
+                    <span id="printWorkTargetRight"></span>
                 </div>
-            </section>
-
-            <!-- 작업 내용 -->
-            <section class="card p-6 mb-6">
-                <h2 class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-blue-100 pb-2">🔧 작업 내용</h2>
-                <div>
-                    <textarea id="workContent_copy" readonly rows="1" 
-                              class="lined-textarea w-full px-3 py-2 border border-gray-300 rounded-lg resize-vertical">
-                    </textarea>
+                <div class="field-container flex">
+                    <label>작업자 및 인원:</label>
+                    <span id="printWorkersRight"></span>
                 </div>
-            </section>
-
-            <!-- 측정 장비 정보 -->
-            <section class="card p-6 mb-6">
-                <h2 class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-blue-100 pb-2">🔬 측정 장비 및 방법</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">사용 측정테스터기</label>
-                        <input type="text" id="testEquipment_copy" readonly class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">측정 방법</label>
-                        <input type="text" id="measureMethod_copy" readonly class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                    </div>
+                <div class="field-container">
+                    <label class="block">작업내용:</label>
+                    <div id="printWorkContentRight" class="grid-line-1 w-full"></div>
                 </div>
-            </section>
-
-            <!-- 특이사항 -->
-            <section class="card p-6 mb-6">
-                <h2 class="text-xl font-bold text-gray-800 mb-6 border-b-2 border-blue-100 pb-2">⚠️ 특이사항</h2>
-                <div>
-                    <textarea id="specialNotes_copy" readonly rows="3" 
-                              class="lined-textarea w-full px-3 py-2 border border-gray-300 rounded-lg resize-vertical">
-                    </textarea>
+                <div class="field-container flex">
+                    <label>사용 측정테스터기:</label>
+                    <span id="printTesterUsedRight"></span>
                 </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- 하단 버튼 -->
-    <footer class="bg-white border-t border-gray-200 py-4 no-print sticky bottom-0">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-center gap-2 md:gap-4">
-                <button onclick="saveToLocal()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2">
-                    💾 로컬 저장
-                </button>
-                <button onclick="loadFromLocal()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2">
-                    📂 불러오기
-                </button>
-                <button onclick="exportPDF()" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2">
-                    🖨️ PDF 출력
-                </button>
-                <button onclick="clearAll()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2">
-                    🗑️ 전체 초기화
-                </button>
+                <div class="field-container flex">
+                    <label>측정방법:</label>
+                    <span id="printMeasurementMethodRight"></span>
+                </div>
+                <div class="field-container">
+                    <label class="block">특이사항:</label>
+                    <div id="printNotesRight" class="grid-line-3 w-full"></div>
+                </div>
             </div>
         </div>
-    </footer>
+    </main>
+
+    <div id="loadModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 class="text-xl font-bold mb-4">저장된 작업일지 불러오기</h2>
+            <select id="savedLogsDropdown" class="w-full p-2 border rounded mb-4">
+                <option value="">-- 작업일지 선택 --</option>
+            </select>
+            <button id="confirmLoadBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">불러오기</button>
+            <button id="deleteSelectedLogBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full mt-2">선택된 로그 삭제</button>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 bg-gray-800 text-white py-2 px-4 rounded-lg shadow-md transition-opacity duration-300 opacity-0 hidden">
+        알림 메시지
+    </div>
 
     <script>
-        // 자동 저장 기능
-        let autoSaveInterval;
-        
-        // 페이지 로드시 자동 불러오기
-        document.addEventListener('DOMContentLoaded', function() {
-            // 문제가 있는 데이터 자동 정리
-            cleanupOldData();
-            // 자동저장 파일이 있으면 자동 로드
-            const autoSaved = localStorage.getItem('railwayWorkLog_auto');
-            if (autoSaved) {
-                try {
-                    const data = JSON.parse(autoSaved);
-                    restoreFormData(data);
-                    console.log('자동 저장 데이터 로드됨');
-                } catch (error) {
-                    console.error('자동 저장 데이터 로드 오류:', error);
-                }
-            }
-            startAutoSave();
-            
-            // 오늘 날짜 자동 설정
-            if (!document.getElementById('workDate').value) {
-                document.getElementById('workDate').value = new Date().toISOString().split('T')[0];
-            }
-            
-            // Service Worker 등록 (PWA 지원)
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(function(registration) {
-                        console.log('Service Worker 등록 성공:', registration);
+        // PWA Service Worker 등록
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
                     })
-                    .catch(function(error) {
-                        console.log('Service Worker 등록 실패:', error);
+                    .catch(error => {
+                        console.error('Service Worker registration failed:', error);
                     });
-            }
-        });
-        
-        // 이전 배열 데이터 정리 함수
-        function cleanupOldData() {
-            const manualData = localStorage.getItem('railwayWorkLog');
-            const autoData = localStorage.getItem('railwayWorkLog_auto');
-            
-            let needsCleanup = false;
-            
-            // 수동 저장 데이터 확인
-            if (manualData) {
-                try {
-                    const data = JSON.parse(manualData);
-                    if (Array.isArray(data.workContent) || Array.isArray(data.specialNotes)) {
-                        console.log('이전 배열 형태 데이터 감지됨 - 정리 중...');
-                        needsCleanup = true;
-                    }
-                } catch (e) {
-                    needsCleanup = true;
-                }
-            }
-            
-            // 자동 저장 데이터 확인
-            if (autoData) {
-                try {
-                    const data = JSON.parse(autoData);
-                    if (Array.isArray(data.workContent) || Array.isArray(data.specialNotes)) {
-                        console.log('이전 배열 형태 자동저장 데이터 감지됨 - 정리 중...');
-                        needsCleanup = true;
-                    }
-                } catch (e) {
-                    needsCleanup = true;
-                }
-            }
-            
-            // 문제가 있는 데이터 삭제
-            if (needsCleanup) {
-                localStorage.removeItem('railwayWorkLog');
-                localStorage.removeItem('railwayWorkLog_auto');
-                console.log('✅ 이전 데이터 정리 완료');
-                
-                // 사용자에게 알림
-                setTimeout(() => {
-                    alert('🔄 이전 버전의 데이터 형식이 감지되어 자동으로 정리되었습니다.\n새로 입력해주세요.');
-                }, 500);
-            }
+            });
         }
-        
-        // 자동 저장 시작
-        function startAutoSave() {
-            autoSaveInterval = setInterval(autoSave, 30000); // 30초마다 자동 저장
-        }
-        
-        // 자동 저장 함수
-        function autoSave() {
-            const data = collectFormData();
-            localStorage.setItem('railwayWorkLog_auto', JSON.stringify(data));
-            console.log('자동 저장 완료:', new Date().toLocaleString());
-        }
-        
-        // 폼 데이터 수집
-        function collectFormData() {
-            const data = {
-                timestamp: new Date().toISOString(),
-                workDate: document.getElementById('workDate').value,
-                temperature: document.getElementById('temperature').value,
-                humidity: document.getElementById('humidity').value,
-                workTarget: document.getElementById('workTarget').value,
-                workTeam: document.getElementById('workTeam').value,
-                testEquipment: document.getElementById('testEquipment').value,
-                measureMethod: document.getElementById('measureMethod').value,
-                workContent: '',
-                specialNotes: ''
-            };
-            
-            // 작업 내용 수집
-            data.workContent = document.getElementById('workContent').value;
-            
-            // 특이사항 수집
-            data.specialNotes = document.getElementById('specialNotes').value;
-            
-            return data;
-        }
-        
-        // 폼 데이터 복원
-        function restoreFormData(data) {
-            if (!data) return;
-            
-            document.getElementById('workDate').value = data.workDate || '';
-            document.getElementById('temperature').value = data.temperature || '';
-            document.getElementById('humidity').value = data.humidity || '';
-            document.getElementById('workTarget').value = data.workTarget || '';
-            document.getElementById('workTeam').value = data.workTeam || '';
-            document.getElementById('testEquipment').value = data.testEquipment || '';
-            document.getElementById('measureMethod').value = data.measureMethod || '';
-            
-            // 작업 내용 복원 (이전 배열 형태 데이터 처리)
-            let workContentText = '';
-            if (Array.isArray(data.workContent)) {
-                // 이전 배열 형태 데이터를 문자열로 변환
-                workContentText = data.workContent.map(work => {
-                    const parts = [];
-                    if (work.item) parts.push(work.item);
-                    if (work.detail) parts.push(work.detail);
-                    if (work.time) parts.push(`(${work.time})`);
-                    if (work.note) parts.push(`[${work.note}]`);
-                    return parts.join(' - ');
-                }).filter(line => line.trim()).join('\n');
-            } else {
-                workContentText = data.workContent || '';
-            }
-            document.getElementById('workContent').value = workContentText;
-            
-            // 특이사항 복원 (이전 배열 형태 데이터 처리)
-            let specialNotesText = '';
-            if (Array.isArray(data.specialNotes)) {
-                // 이전 배열 형태 데이터를 문자열로 변환
-                specialNotesText = data.specialNotes.map(special => {
-                    const parts = [];
-                    if (special.date) parts.push(`[${special.date}]`);
-                    if (special.item) parts.push(special.item);
-                    if (special.content) parts.push(special.content);
-                    if (special.action) parts.push(`→ ${special.action}`);
-                    if (special.remark) parts.push(`(${special.remark})`);
-                    return parts.join(' ');
-                }).filter(line => line.trim()).join('\n');
-            } else {
-                specialNotesText = data.specialNotes || '';
-            }
-            document.getElementById('specialNotes').value = specialNotesText;
-        }
-        
-        // 로컬 저장
-        function saveToLocal() {
-            const data = collectFormData();
-            
-            // 기본 파일명 생성 (날짜 기반)
-            const today = new Date().toISOString().split('T')[0];
-            const defaultName = `작업일지_${data.workDate || today}`;
-            
-            // 파일명 입력 모달 표시
-            showSaveModal(defaultName, data);
-        }
-        
-        // 저장 모달 표시
-        function showSaveModal(defaultName, data) {
-            const modalHTML = `
-                <div id="saveModal" style="
-                    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                    background: rgba(0,0,0,0.5); display: flex; align-items: center; 
-                    justify-content: center; z-index: 1000;
-                ">
-                    <div style="
-                        background: white; padding: 20px; border-radius: 10px; 
-                        max-width: 400px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-                    ">
-                        <h3 style="margin: 0 0 15px 0; color: #1f2937; font-size: 18px; font-weight: bold;">
-                            💾 파일명을 입력하세요
-                        </h3>
-                        <input type="text" id="fileNameInput" value="${defaultName}" style="
-                            width: 100%; padding: 10px; border: 1px solid #d1d5db; 
-                            border-radius: 5px; margin-bottom: 15px; font-size: 14px;
-                            box-sizing: border-box;
-                        ">
-                        <div id="saveMessage" style="
-                            margin-bottom: 15px; padding: 10px; border-radius: 5px; 
-                            display: none; font-size: 14px;
-                        "></div>
-                        <div style="display: flex; gap: 10px; justify-content: flex-end;">
-                            <button onclick="closeSaveModal()" style="
-                                padding: 8px 16px; background: #6b7280; color: white; 
-                                border: none; border-radius: 5px; cursor: pointer;
-                            ">취소</button>
-                            <button onclick="confirmSave()" style="
-                                padding: 8px 16px; background: #2563eb; color: white; 
-                                border: none; border-radius: 5px; cursor: pointer;
-                            ">저장</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.body.insertAdjacentHTML('beforeend', modalHTML);
-            
-            // 데이터를 모달에 저장
-            document.getElementById('saveModal').setAttribute('data-form-data', JSON.stringify(data));
-            
-            // 입력 필드에 포커스
+
+        const dateTimeInput = document.getElementById('dateTime');
+        const temperatureInput = document.getElementById('temperature');
+        const humidityInput = document.getElementById('humidity');
+        const workTargetInput = document.getElementById('workTarget');
+        const workersInput = document.getElementById('workers');
+        const workContentInput = document.getElementById('workContent');
+        const testerUsedInput = document.getElementById('testerUsed');
+        const measurementMethodInput = document.getElementById('measurementMethod');
+        const notesInput = document.getElementById('notes');
+
+        const saveManualBtn = document.getElementById('saveManualBtn'); // Changed: Removed auto save button
+        const loadBtn = document.getElementById('loadBtn');
+        const printPdfBtn = document.getElementById('printPdfBtn');
+        const toast = document.getElementById('toast');
+
+        const printPreviewArea = document.getElementById('printPreviewArea');
+
+        const loadModal = document.getElementById('loadModal');
+        const closeButton = document.querySelector('.close-button');
+        const savedLogsDropdown = document.getElementById('savedLogsDropdown');
+        const confirmLoadBtn = document.getElementById('confirmLoadBtn');
+        const deleteSelectedLogBtn = document.getElementById('deleteSelectedLogBtn');
+
+        // Removed currentLogKey as auto-save is removed
+        const savedLogsKey = 'railwaySignalSavedLogs';
+
+        // Helper function to show toast messages
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            toast.classList.add('opacity-100');
             setTimeout(() => {
-                const input = document.getElementById('fileNameInput');
-                input.focus();
-                input.select();
-            }, 100);
-        }
-        
-        // 저장 확인
-        function confirmSave() {
-            const fileName = document.getElementById('fileNameInput').value.trim();
-            const modal = document.getElementById('saveModal');
-            const data = JSON.parse(modal.getAttribute('data-form-data'));
-            
-            if (!fileName) {
-                showSaveMessage('❌ 파일명을 입력해주세요.', 'error');
-                return;
-            }
-            
-            try {
-                const key = `railwayWorkLog_${fileName}`;
-                localStorage.setItem(key, JSON.stringify(data));
-                showSaveMessage(`✅ "${fileName}" 파일이 저장되었습니다.`, 'success');
-                
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
                 setTimeout(() => {
-                    closeSaveModal();
-                }, 1500);
-            } catch (error) {
-                showSaveMessage('❌ 저장에 실패했습니다.', 'error');
-            }
-        }
-        
-        // 저장 메시지 표시
-        function showSaveMessage(message, type) {
-            const messageDiv = document.getElementById('saveMessage');
-            messageDiv.textContent = message;
-            messageDiv.style.display = 'block';
-            messageDiv.style.background = type === 'success' ? '#dcfce7' : '#fef2f2';
-            messageDiv.style.color = type === 'success' ? '#166534' : '#dc2626';
-            messageDiv.style.border = `1px solid ${type === 'success' ? '#bbf7d0' : '#fecaca'}`;
-        }
-        
-        // 저장 모달 닫기
-        function closeSaveModal() {
-            const modal = document.getElementById('saveModal');
-            if (modal) {
-                modal.remove();
-            }
-        }
-        
-        // 로컬에서 불러오기
-        function loadFromLocal() {
-            try {
-                // 저장된 파일 목록 가져오기
-                const savedFiles = [];
-                for (let i = 0; i < localStorage.length; i++) {
-                    const key = localStorage.key(i);
-                    if (key && key.startsWith('railwayWorkLog_')) {
-                        const fileName = key.replace('railwayWorkLog_', '');
-                        savedFiles.push({ key, fileName });
-                    }
-                }
-                
-                // 자동 저장 파일도 확인
-                if (localStorage.getItem('railwayWorkLog_auto')) {
-                    savedFiles.push({ key: 'railwayWorkLog_auto', fileName: '자동저장 파일' });
-                }
-                
-                if (savedFiles.length === 0) {
-                    showToast('📂 저장된 파일이 없습니다.', 'info');
-                    return;
-                }
-                
-                // 드롭다운 모달 생성
-                showFileSelectModal(savedFiles);
-                
-            } catch (error) {
-                console.error('데이터 로드 오류:', error);
-                alert('❌ 데이터 불러오기에 실패했습니다.');
-            }
-        }
-        
-        // 파일 선택 모달 표시
-        function showFileSelectModal(files) {
-            // 모달 HTML 생성
-            const modalHTML = `
-                <div id="fileSelectModal" style="
-                    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                    background: rgba(0,0,0,0.5); display: flex; align-items: center; 
-                    justify-content: center; z-index: 1000;
-                ">
-                    <div style="
-                        background: white; padding: 20px; border-radius: 10px; 
-                        max-width: 400px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-                    ">
-                        <h3 style="margin: 0 0 15px 0; color: #1f2937; font-size: 18px; font-weight: bold;">
-                            📂 불러올 파일을 선택하세요
-                        </h3>
-                                                 <select id="fileSelect" style="
-                             width: 100%; padding: 10px; border: 1px solid #d1d5db; 
-                             border-radius: 5px; margin-bottom: 15px; font-size: 14px;
-                         ">
-                             <option value="">파일을 선택하세요...</option>
-                             ${files.map(file => 
-                                 `<option value="${file.key}">${file.fileName}</option>`
-                             ).join('')}
-                         </select>
-                         <div id="fileMessage" style="
-                             margin-bottom: 15px; padding: 10px; border-radius: 5px; 
-                             display: none; font-size: 14px;
-                         "></div>
-                        <div style="display: flex; gap: 10px; justify-content: flex-end;">
-                            <button onclick="closeFileSelectModal()" style="
-                                padding: 8px 16px; background: #6b7280; color: white; 
-                                border: none; border-radius: 5px; cursor: pointer;
-                            ">취소</button>
-                            <button onclick="loadSelectedFile()" style="
-                                padding: 8px 16px; background: #2563eb; color: white; 
-                                border: none; border-radius: 5px; cursor: pointer;
-                            ">불러오기</button>
-                            <button onclick="deleteSelectedFile()" style="
-                                padding: 8px 16px; background: #dc2626; color: white; 
-                                border: none; border-radius: 5px; cursor: pointer;
-                            ">삭제</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // 모달을 body에 추가
-            document.body.insertAdjacentHTML('beforeend', modalHTML);
-        }
-        
-        // 선택된 파일 불러오기
-        function loadSelectedFile() {
-            const select = document.getElementById('fileSelect');
-            const selectedKey = select.value;
-            
-            if (!selectedKey) {
-                showFileMessage('파일을 선택해주세요.', 'error');
-                return;
-            }
-            
-            try {
-                const saved = localStorage.getItem(selectedKey);
-                if (saved) {
-                    const data = JSON.parse(saved);
-                    restoreFormData(data);
-                    showFileMessage(`✅ "${select.options[select.selectedIndex].text}" 파일을 불러왔습니다.`, 'success');
-                    setTimeout(() => {
-                        closeFileSelectModal();
-                    }, 1500);
-                } else {
-                    showFileMessage('❌ 파일을 찾을 수 없습니다.', 'error');
-                }
-            } catch (error) {
-                console.error('파일 로드 오류:', error);
-                showFileMessage('❌ 파일 불러오기에 실패했습니다.', 'error');
-            }
-        }
-        
-        // 선택된 파일 삭제
-        function deleteSelectedFile() {
-            const select = document.getElementById('fileSelect');
-            const selectedKey = select.value;
-            
-            if (!selectedKey) {
-                showFileMessage('삭제할 파일을 선택해주세요.', 'error');
-                return;
-            }
-            
-            const fileName = select.options[select.selectedIndex].text;
-            showDeleteConfirm(selectedKey, fileName);
-        }
-        
-        // 삭제 확인 모달
-        function showDeleteConfirm(selectedKey, fileName) {
-            const confirmHTML = `
-                <div id="deleteConfirm" style="
-                    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                    background: rgba(0,0,0,0.7); display: flex; align-items: center; 
-                    justify-content: center; z-index: 1001;
-                ">
-                    <div style="
-                        background: white; padding: 20px; border-radius: 10px; 
-                        max-width: 350px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-                    ">
-                        <h3 style="margin: 0 0 15px 0; color: #dc2626; font-size: 18px; font-weight: bold;">
-                            🗑️ 파일 삭제
-                        </h3>
-                        <p style="margin: 0 0 20px 0; color: #374151;">
-                            "${fileName}" 파일을 삭제하시겠습니까?<br>
-                            <span style="color: #dc2626; font-size: 12px;">이 작업은 되돌릴 수 없습니다.</span>
-                        </p>
-                        <div style="display: flex; gap: 10px; justify-content: flex-end;">
-                            <button onclick="closeDeleteConfirm()" style="
-                                padding: 8px 16px; background: #6b7280; color: white; 
-                                border: none; border-radius: 5px; cursor: pointer;
-                            ">취소</button>
-                            <button onclick="confirmDelete('${selectedKey}', '${fileName}')" style="
-                                padding: 8px 16px; background: #dc2626; color: white; 
-                                border: none; border-radius: 5px; cursor: pointer;
-                            ">삭제</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.body.insertAdjacentHTML('beforeend', confirmHTML);
-        }
-        
-        // 삭제 실행
-        function confirmDelete(selectedKey, fileName) {
-            try {
-                localStorage.removeItem(selectedKey);
-                closeDeleteConfirm();
-                showFileMessage(`✅ "${fileName}" 파일이 삭제되었습니다.`, 'success');
-                
-                // 파일 목록 새로고침
-                setTimeout(() => {
-                    closeFileSelectModal();
-                    loadFromLocal();
-                }, 1500);
-            } catch (error) {
-                showFileMessage('❌ 파일 삭제에 실패했습니다.', 'error');
-            }
-        }
-        
-        // 삭제 확인 모달 닫기
-        function closeDeleteConfirm() {
-            const modal = document.getElementById('deleteConfirm');
-            if (modal) {
-                modal.remove();
-            }
-        }
-        
-        // 파일 메시지 표시
-        function showFileMessage(message, type) {
-            const messageDiv = document.getElementById('fileMessage');
-            if (messageDiv) {
-                messageDiv.textContent = message;
-                messageDiv.style.display = 'block';
-                messageDiv.style.background = type === 'success' ? '#dcfce7' : '#fef2f2';
-                messageDiv.style.color = type === 'success' ? '#166534' : '#dc2626';
-                messageDiv.style.border = `1px solid ${type === 'success' ? '#bbf7d0' : '#fecaca'}`;
-            }
-        }
-        
-        // 토스트 메시지 표시 (페이지 이동 없이)
-        function showToast(message, type) {
-            const toastHTML = `
-                <div id="toast" style="
-                    position: fixed; top: 20px; right: 20px; z-index: 2000;
-                    background: ${type === 'success' ? '#22c55e' : type === 'error' ? '#ef4444' : '#3b82f6'};
-                    color: white; padding: 12px 20px; border-radius: 8px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-size: 14px;
-                    max-width: 300px; animation: slideIn 0.3s ease-out;
-                ">
-                    ${message}
-                </div>
-                <style>
-                    @keyframes slideIn {
-                        from { transform: translateX(100%); opacity: 0; }
-                        to { transform: translateX(0); opacity: 1; }
-                    }
-                </style>
-            `;
-            
-            // 기존 토스트 제거
-            const existingToast = document.getElementById('toast');
-            if (existingToast) {
-                existingToast.remove();
-            }
-            
-            document.body.insertAdjacentHTML('beforeend', toastHTML);
-            
-            // 3초 후 자동 제거
-            setTimeout(() => {
-                const toast = document.getElementById('toast');
-                if (toast) {
-                    toast.style.animation = 'slideIn 0.3s ease-out reverse';
-                    setTimeout(() => toast.remove(), 300);
-                }
+                    toast.classList.add('hidden');
+                }, 300);
             }, 3000);
         }
-        
-        // 모달 닫기
-        function closeFileSelectModal() {
-            const modal = document.getElementById('fileSelectModal');
-            if (modal) {
-                modal.remove();
-            }
-        }
-        
 
-        
-        // PDF 출력
-        function exportPDF() {
-            // 현재 입력값을 복제본에 복사
-            copyDataToDuplicate();
-            
-            // 두 번째 복사본 생성
-            createSecondCopy();
-            
-            // PDF 출력 최적화
-            setTimeout(() => {
-                // 뷰포트 메타 태그 임시 변경 (모바일 전용)
-                const viewport = document.querySelector('meta[name="viewport"]');
-                const originalContent = viewport.content;
-                
-                // 모바일에서 스케일 고정
-                if (window.innerWidth <= 768) {
-                    viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-                    
-                    // body에 임시 스타일 추가
-                    document.body.style.zoom = '1';
-                    document.body.style.transform = 'scale(1)';
-                    document.body.style.transformOrigin = 'top left';
-                }
-                
-                // PDF 출력
-                window.print();
-                
-                // 출력 후 복원
-                setTimeout(() => {
-                    viewport.content = originalContent;
-                    if (window.innerWidth <= 768) {
-                        document.body.style.zoom = '';
-                        document.body.style.transform = '';
-                        document.body.style.transformOrigin = '';
+        // Set current date/time on load
+        function setInitialDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = (now.getMonth() + 1).toString().padStart(2, '0');
+            const day = now.getDate().toString().padStart(2, '0');
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            dateTimeInput.value = `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+
+        // Load data from localStorage (only for saved logs now)
+        function loadDataFromKey(key) { // Renamed from loadData for clarity
+            let data = localStorage.getItem(key);
+            if (data) {
+                try {
+                    data = JSON.parse(data);
+                    // 이전 버전 배열 데이터 호환성 처리
+                    for (const prop in data) {
+                        if (Array.isArray(data[prop])) {
+                            data[prop] = data[prop][0] || ''; // 첫 번째 요소 사용 또는 빈 문자열
+                        }
                     }
-                }, 1500);
-            }, 300);
-        }
-        
-        // 데이터를 복제본에 복사
-        function copyDataToDuplicate() {
-            document.getElementById('workDate_copy').value = document.getElementById('workDate').value;
-            document.getElementById('temperature_copy').value = document.getElementById('temperature').value;
-            document.getElementById('humidity_copy').value = document.getElementById('humidity').value;
-            document.getElementById('workTarget_copy').value = document.getElementById('workTarget').value;
-            document.getElementById('workTeam_copy').value = document.getElementById('workTeam').value;
-            document.getElementById('workContent_copy').value = document.getElementById('workContent').value;
-            document.getElementById('testEquipment_copy').value = document.getElementById('testEquipment').value;
-            document.getElementById('measureMethod_copy').value = document.getElementById('measureMethod').value;
-            document.getElementById('specialNotes_copy').value = document.getElementById('specialNotes').value;
-        }
-        
-        // 두 번째 복사본 생성 (ID는 변경하지 않고 동일하게 유지)
-        function createSecondCopy() {
-            const original = document.querySelector('#pdf-duplicate > main');
-            const clone = original.cloneNode(true);
-            
-            // 데이터도 복사
-            const originalInputs = original.querySelectorAll('input, textarea');
-            const cloneInputs = clone.querySelectorAll('input, textarea');
-            
-            for (let i = 0; i < originalInputs.length; i++) {
-                if (cloneInputs[i]) {
-                    cloneInputs[i].value = originalInputs[i].value;
+
+                    dateTimeInput.value = data.dateTime || '';
+                    temperatureInput.value = data.temperature || '';
+                    humidityInput.value = data.humidity || '';
+                    workTargetInput.value = data.workTarget || '';
+                    workersInput.value = data.workers || '';
+                    workContentInput.value = data.workContent || '';
+                    testerUsedInput.value = data.testerUsed || '';
+                    measurementMethodInput.value = data.measurementMethod || '';
+                    notesInput.value = data.notes || '';
+                    return true; // Data loaded successfully
+                } catch (e) {
+                    console.error("Failed to parse data from localStorage, resetting.", e);
+                    localStorage.removeItem(key);
+                    return false; // Failed to load
                 }
             }
-            
-            document.getElementById('pdf-duplicate').appendChild(clone);
+            return false; // No data found
         }
-        
-        // 전체 초기화
-        function clearAll() {
-            if (confirm('⚠️ 모든 데이터가 삭제됩니다. 정말 초기화하시겠습니까?')) {
-                // 모든 입력 필드 초기화
-                document.querySelectorAll('input, textarea').forEach(element => {
-                    if (element.type === 'date') {
-                        element.value = '';
-                    } else {
-                        element.value = '';
-                    }
-                });
-                
-                // 오늘 날짜 다시 설정
-                document.getElementById('workDate').value = new Date().toISOString().split('T')[0];
-                
-                // localStorage 초기화 (모든 작업일지 파일 삭제)
-                const keysToRemove = [];
-                for (let i = 0; i < localStorage.length; i++) {
-                    const key = localStorage.key(i);
-                    if (key && key.startsWith('railwayWorkLog_')) {
-                        keysToRemove.push(key);
-                    }
-                }
-                keysToRemove.forEach(key => localStorage.removeItem(key));
-                
-                alert('✅ 모든 데이터가 초기화되었습니다.');
-            }
+
+        // Reset form
+        function resetForm() {
+            dateTimeInput.value = '';
+            temperatureInput.value = '';
+            humidityInput.value = '';
+            workTargetInput.value = '';
+            workersInput.value = '';
+            workContentInput.value = '';
+            testerUsedInput.value = '';
+            measurementMethodInput.value = '';
+            notesInput.value = '';
+            setInitialDateTime();
+            showToast('폼이 초기화되었습니다.');
         }
-        
-        // 입력 시 자동 저장 트리거
-        document.addEventListener('input', function(e) {
-            if (e.target.matches('input, textarea, select')) {
-                clearTimeout(window.inputTimeout);
-                window.inputTimeout = setTimeout(autoSave, 2000); // 2초 후 자동 저장
-            }
-        });
-        
-        // 페이지 나가기 전 자동 저장
-        window.addEventListener('beforeunload', function() {
-            autoSave();
-        });
-        
-        // PWA 설치 프롬프트 관련
-        let deferredPrompt;
-        
-        window.addEventListener('beforeinstallprompt', (e) => {
-            // 기본 브라우저 프롬프트 차단
-            e.preventDefault();
-            // 나중에 사용할 수 있도록 이벤트 저장
-            deferredPrompt = e;
-            // 설치 버튼 표시
-            document.getElementById('install-app').style.display = 'block';
-        });
-        
-        function showInstallPrompt() {
-            if (deferredPrompt) {
-                // 설치 프롬프트 표시
-                deferredPrompt.prompt();
-                // 사용자의 선택을 기다림
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('사용자가 앱 설치를 수락했습니다');
-                    } else {
-                        console.log('사용자가 앱 설치를 거부했습니다');
-                    }
-                    deferredPrompt = null;
-                    document.getElementById('install-app').style.display = 'none';
-                });
+
+        // Manual Save with filename
+        saveManualBtn.addEventListener('click', () => {
+            const filename = prompt("저장할 파일 이름을 입력하세요 (예: 20250115_작업일지):");
+            if (filename) {
+                const logs = JSON.parse(localStorage.getItem(savedLogsKey) || '{}');
+                const currentData = {
+                    dateTime: dateTimeInput.value,
+                    temperature: temperatureInput.value,
+                    humidity: humidityInput.value,
+                    workTarget: workTargetInput.value,
+                    workers: workersInput.value,
+                    workContent: workContentInput.value,
+                    testerUsed: testerUsedInput.value,
+                    measurementMethod: measurementMethodInput.value,
+                    notes: notesInput.value
+                };
+                logs[filename] = currentData;
+                localStorage.setItem(savedLogsKey, JSON.stringify(logs));
+                showToast(`'${filename}'으로 저장되었습니다.`);
             } else {
-                // iOS Safari 또는 이미 설치된 경우
-                if (navigator.userAgent.match(/iPhone|iPad|iPod/)) {
-                    alert('📲 Safari 브라우저에서:\n1. 화면 하단의 공유 버튼(□↗) 터치\n2. "홈 화면에 추가" 선택\n3. 앱 이름 확인 후 "추가" 터치');
-                } else {
-                    alert('📲 Chrome 브라우저에서:\n1. 우상단 ⋮ 메뉴 터치\n2. "홈 화면에 추가" 또는 "앱 설치" 선택\n3. 설치 확인');
-                }
+                showToast('파일 이름이 입력되지 않아 저장이 취소되었습니다.');
+            }
+        });
+
+        // Populate dropdown with saved logs
+        function populateSavedLogsDropdown() {
+            savedLogsDropdown.innerHTML = '<option value="">-- 작업일지 선택 --</option>';
+            const logs = JSON.parse(localStorage.getItem(savedLogsKey) || '{}');
+            for (const filename in logs) {
+                const option = document.createElement('option');
+                option.value = filename;
+                option.textContent = filename;
+                savedLogsDropdown.appendChild(option);
             }
         }
-        
-        // PDF 출력 후 복제본 정리
-        window.addEventListener('afterprint', function() {
-            setTimeout(() => {
-                // 두 번째 복사본 제거 (첫 번째는 유지)
-                const duplicate = document.getElementById('pdf-duplicate');
-                if (duplicate) {
-                    const mains = duplicate.querySelectorAll('main');
-                    if (mains.length > 1) {
-                        mains[1].remove();
-                    }
+
+        // Open Load Modal
+        loadBtn.addEventListener('click', () => {
+            populateSavedLogsDropdown();
+            loadModal.style.display = 'flex'; // Use flex to center
+        });
+
+        // Close Modal
+        closeButton.addEventListener('click', () => {
+            loadModal.style.display = 'none';
+        });
+
+        // Close Modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target == loadModal) {
+                loadModal.style.display = 'none';
+            }
+        });
+
+        // Confirm Load from dropdown
+        confirmLoadBtn.addEventListener('click', () => {
+            const selectedFilename = savedLogsDropdown.value;
+            if (selectedFilename) {
+                const logs = JSON.parse(localStorage.getItem(savedLogsKey) || '{}');
+                const data = logs[selectedFilename];
+                if (data) {
+                    dateTimeInput.value = data.dateTime || '';
+                    temperatureInput.value = data.temperature || '';
+                    humidityInput.value = data.humidity || '';
+                    workTargetInput.value = data.workTarget || '';
+                    workersInput.value = data.workers || '';
+                    workContentInput.value = data.workContent || '';
+                    testerUsedInput.value = data.testerUsed || '';
+                    measurementMethodInput.value = data.measurementMethod || '';
+                    notesInput.value = data.notes || '';
+                    showToast(`'${selectedFilename}' 작업일지를 불러왔습니다.`);
+                    loadModal.style.display = 'none';
+                } else {
+                    showToast('선택한 파일이 존재하지 않습니다.');
                 }
-            }, 500);
+            } else {
+                showToast('불러올 작업일지를 선택해주세요.');
+            }
+        });
+
+        // Delete selected log from dropdown
+        deleteSelectedLogBtn.addEventListener('click', () => {
+            const selectedFilename = savedLogsDropdown.value;
+            if (selectedFilename) {
+                if (confirm(`'${selectedFilename}' 작업일지를 정말 삭제하시겠습니까?`)) {
+                    const logs = JSON.parse(localStorage.getItem(savedLogsKey) || '{}');
+                    delete logs[selectedFilename];
+                    localStorage.setItem(savedLogsKey, JSON.stringify(logs));
+                    populateSavedLogsDropdown(); // Refresh dropdown
+                    showToast(`'${selectedFilename}' 작업일지가 삭제되었습니다.`);
+                }
+            } else {
+                showToast('삭제할 작업일지를 선택해주세요.');
+            }
+        });
+
+        // PDF Print Functionality
+        printPdfBtn.addEventListener('click', () => {
+            const data = {
+                dateTime: dateTimeInput.value,
+                temperature: temperatureInput.value ? `${temperatureInput.value}℃` : '',
+                humidity: humidityInput.value ? `${humidityInput.value}%` : '',
+                workTarget: workTargetInput.value,
+                workers: workersInput.value,
+                workContent: workContentInput.value,
+                testerUsed: testerUsedInput.value,
+                measurementMethod: measurementMethodInput.value,
+                notes: notesInput.value
+            };
+
+            // Populate print areas
+            document.getElementById('printDateTimeLeft').textContent = data.dateTime;
+            document.getElementById('printTemperatureLeft').textContent = data.temperature;
+            document.getElementById('printHumidityLeft').textContent = data.humidity;
+            document.getElementById('printWorkTargetLeft').textContent = data.workTarget;
+            document.getElementById('printWorkersLeft').textContent = data.workers;
+            document.getElementById('printWorkContentLeft').textContent = data.workContent;
+            document.getElementById('printTesterUsedLeft').textContent = data.testerUsed;
+            document.getElementById('printMeasurementMethodLeft').textContent = data.measurementMethod;
+            document.getElementById('printNotesLeft').textContent = data.notes;
+
+            // Populate right page (duplicate content for 2-up)
+            document.getElementById('printDateTimeRight').textContent = data.dateTime;
+            document.getElementById('printTemperatureRight').textContent = data.temperature;
+            document.getElementById('printHumidityRight').textContent = data.humidity;
+            document.getElementById('printWorkTargetRight').textContent = data.workTarget;
+            document.getElementById('printWorkersRight').textContent = data.workers;
+            document.getElementById('printWorkContentRight').textContent = data.workContent;
+            document.getElementById('printTesterUsedRight').textContent = data.testerUsed;
+            document.getElementById('printMeasurementMethodRight').textContent = data.measurementMethod;
+            document.getElementById('printNotesRight').textContent = data.notes;
+
+            // Show the print area and trigger print
+            printPreviewArea.classList.remove('hidden');
+
+            try {
+                window.print();
+            } catch (e) {
+                console.error("Printing failed:", e);
+                showToast("인쇄에 실패했습니다. 팝업 차단을 확인하거나 다른 브라우저를 시도해보세요.");
+            } finally {
+                // Hide the print area after print dialog is closed
+                setTimeout(() => {
+                    printPreviewArea.classList.add('hidden');
+                }, 500); // Give a small delay to ensure print dialog appears
+            }
+        });
+
+        // Initial load
+        window.addEventListener('load', () => {
+            setInitialDateTime(); // Ensure date is set on load
+            // Removed auto-load of currentLogKey data
         });
     </script>
 </body>
